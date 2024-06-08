@@ -1,5 +1,5 @@
 from Math.Vector2 import Vector2
-from Phys2D.Bodies.Shape import Shape
+from Phys2D.Primitives.Shape import Shape
 
 
 class Polygon(Shape):

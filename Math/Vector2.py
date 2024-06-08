@@ -18,6 +18,9 @@ class Vector2:
     def normalize(self):
         return self / self.get_length()
 
+    def dot(vector1, vector2) -> float:
+        return (vector1.get_length()) * (vector2.get_length())
+
 
 
     def __abs__(self):

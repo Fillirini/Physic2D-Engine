@@ -18,8 +18,8 @@ class Vector2:
     def normalize(self):
         return self / self.get_length()
 
-    def dot(vector1, vector2) -> float:
-        return (vector1.get_length()) * (vector2.get_length())
+    def dot(self, vector2) -> float:
+        return self.x*vector2.x + self.y*vector2.y
 
 
 

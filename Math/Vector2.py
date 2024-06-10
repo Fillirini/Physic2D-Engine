@@ -24,6 +24,15 @@ class Vector2:
     def distance(self, vector2) -> float:
         return (self - vector2).get_length()
 
+    def is_overlap(self, vector2):
+        return not (self.y < vector2.x or vector2.y < self.x)
+
+    def get_overlap(self, vector2) -> float:
+        return self.y - vector2.x
+
+    def to_tuple(self):
+        return [self.x, self.y]
+
 
 
     def __abs__(self):
@@ -31,6 +40,9 @@ class Vector2:
 
     def __add__(self, other):
         return Vector2(self.x + other.x, self.y + other.y)
+
+    def __iadd__(self, other):
+        return self + other
 
     def __sub__(self, other):
         return Vector2(self.x - other.x, self.y - other.y)
@@ -45,28 +57,16 @@ class Vector2:
         return Vector2(-self.x, -self.y)
 
     def __lt__(self, other):
-        if self.get_length() < other.get_length():
-            return True
-        else:
-            return False
+        return self.get_length() < other.get_length()
 
     def __gt__(self, other):
-        if self.get_length() > other.get_length():
-            return True
-        else:
-            return False
+        return self.get_length() > other.get_length()
 
     def __le__(self, other):
-        if self.get_length() <= other.get_length():
-            return True
-        else:
-            return False
+        return self.get_length() <= other.get_length()
 
     def __ge__(self, other):
-        if self.get_length() >= other.get_length():
-            return True
-        else:
-            return False
+        return self.get_length() >= other.get_length()
 
     def __str__(self):
         return "x: " + self.x.__str__() + " y: " + self.y.__str__()

@@ -9,4 +9,17 @@ class Polygon(Shape):
         super().__init__(position)
         self.vertices = vertices
 
+    #test
+    def rotate(self, degree):
+        theta = math.radians(degree)
+
+        cos = math.cos(theta)
+        sin = math.sin(theta)
+
+        for vert in self.vertices:
+            distance = vert - self.position
+            vert.x = self.position.x + distance.x * cos - distance.y * sin
+            vert.y = self.position.y + distance.x * sin + distance.y * cos
+        pass
+
     pass

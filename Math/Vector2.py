@@ -10,65 +10,58 @@ class Vector2:
         self.y = y
         pass
 
-
-
-    def get_length(self) -> float:
+    def length(self) -> float:
         return math.sqrt(pow(self.x, 2) + pow(self.y, 2))
 
+    def square_length(self):
+        return pow(self.x, 2) + pow(self.y, 2)
+
+    def distance(self, other):
+        return (self - other).length()
+
     def normalize(self):
-        return self / self.get_length()
+        return self / self.length()
 
-    def dot(self, vector2) -> float:
-        return self.x*vector2.x + self.y*vector2.y
+    def dot(self, other) -> float:
+        return self.x * other.x + self.y * other.y
 
-    def distance(self, vector2) -> float:
-        return (self - vector2).get_length()
+    def cross(self, other) -> float:
+        return self.x * other.y - self.y * other.x
 
-    def is_overlap(self, vector2):
-        return not (self.y < vector2.x or vector2.y < self.x)
-
-    def get_overlap(self, vector2) -> float:
-        return self.y - vector2.x
-
-    def to_tuple(self):
+    def to_tuple(self) -> [float, float]:
         return [self.x, self.y]
 
-
-
-    def __abs__(self):
-        return Vector2(abs(self.x), abs(self.y))
+    def to_pygame_tuple(self, height_screen: float) -> [float, float]:
+        return [self.x, height_screen - self.y]
 
     def __add__(self, other):
         return Vector2(self.x + other.x, self.y + other.y)
 
     def __iadd__(self, other):
-        return self + other
+        return Vector2(self.x + other.x, self.y + other.y)
 
     def __sub__(self, other):
+        return Vector2(self.x - other.x, self.y - other.y)
+
+    def __isub__(self, other):
         return Vector2(self.x - other.x, self.y - other.y)
 
     def __mul__(self, other):
         return Vector2(self.x * other, self.y * other)
 
+    def __imul__(self, other):
+        return Vector2(self.x * other, self.y * other)
+
     def __truediv__(self, other):
+        return Vector2(self.x / other, self.y / other)
+
+    def __itruediv__(self, other):
         return Vector2(self.x / other, self.y / other)
 
     def __neg__(self):
         return Vector2(-self.x, -self.y)
 
-    def __lt__(self, other):
-        return self.get_length() < other.get_length()
-
-    def __gt__(self, other):
-        return self.get_length() > other.get_length()
-
-    def __le__(self, other):
-        return self.get_length() <= other.get_length()
-
-    def __ge__(self, other):
-        return self.get_length() >= other.get_length()
-
     def __str__(self):
-        return "x: " + self.x.__str__() + " y: " + self.y.__str__()
+        return "x: " + self.x.__str__() + "  y: " + self.y.__str__()
 
     pass
